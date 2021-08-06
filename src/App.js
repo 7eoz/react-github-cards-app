@@ -22,12 +22,23 @@ const testData = [
 ];
 
 class App extends React.Component {
+  state = {
+    profiles: testData
+  };
+
+  addNewProfile(profileData) {
+    setState(prevProfiles => ({
+      profiles: [...prevProfiles.profiles, profileData]
+    }));
+    console.log(this.state.profiles);
+  }
+
   render() {
     return (
       <div>
         <div className="header">{this.props.title}</div>
-        <Form />
-        <CardList profiles={testData} />
+        <Form onSubmit={this.addNewProfile} />
+        <CardList profiles={this.state.profiles} />
       </div>
     );
   }
