@@ -21,7 +21,7 @@ const testData = [
 ];
 
 const CardList = props => {
-  return <div>{(testData.map = profile => <Card {...profile} />)}</div>;
+  return testData.map(profile => <Card {...profile} />);
 };
 
 export default CardList;
