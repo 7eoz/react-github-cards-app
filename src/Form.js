@@ -1,12 +1,27 @@
 import React from 'react';
+import axios from 'axios';
 
 class Form extends React.Component {
-  userNameInput = React.createRef();
+  // userNameInput = React.createRef(); Commented out to be repleced by state
+  // constructor() {
+  //   super();
+  //   this.state = {
+  //     userName: ''
+  //   };
+  // }
 
-  handleSubmit(event) {
+  state = {
+    userName: ''
+  };
+
+  handleSubmit = async event => {
     event.preventDefault();
-    console.log(this.userNameInput.current.value);
-  }
+    const resp = await axios.get(
+      `https://api.github.com/users/${this.state.userName}`
+    );
+    console.log(resp);
+    console.log(this.state.userName);
+  };
 
   render() {
     return (
@@ -20,8 +35,10 @@ class Form extends React.Component {
         <input
           type="text"
           placeholder="Github Username"
+          value={this.state.username}
+          onChange={event => this.setState({ userName: event.target.value })}
           // name="username"
-          ref={this.userNameInput}
+          // ref={this.userNameInput} Commented out to be repleced by state
           required
         />
         <button>Add Card</button>
