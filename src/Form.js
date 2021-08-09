@@ -20,6 +20,7 @@ class Form extends React.Component {
       `https://api.github.com/users/${this.state.userName}`
     );
     this.props.onSubmit(resp.data);
+    this.setState({ userName: '' });
   };
 
   render() {
@@ -30,13 +31,13 @@ class Form extends React.Component {
 
       //Use function like this instead to make sure that the used scope is
       //the component one
-      <form onSubmit={e => this.handleSubmit(e)}>
+      // <form onSubmit={e => this.handleSubmit(e)}>
+      <form onSubmit={this.handleSubmit}>
         <input
           type="text"
-          placeholder="Github Username"
-          value={this.state.username}
+          value={this.state.userName}
           onChange={event => this.setState({ userName: event.target.value })}
-          // name="username"
+          placeholder="Github Username"
           // ref={this.userNameInput} Commented out to be repleced by state
           required
         />

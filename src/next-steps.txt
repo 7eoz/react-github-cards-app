@@ -1,0 +1,2 @@
+//Handle errors.
+//Create and agent-type module to comunicate with the api and make the code only depends on that agent module.
